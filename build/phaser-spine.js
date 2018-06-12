@@ -8980,14 +8980,14 @@ var PhaserSpine;
                 renderSession.context.scale(scale.x * res, scale.y * res);
                 renderSession.context.translate(bounds.width / 2 / scale.x, bounds.height / scale.y / res);
                 if (res > 1) {
-                    renderSession.context.translate(0, bounds.height / scale.y / res / 2);
+                    renderSession.context.translate(0, bounds.height / scale.y);
                 }
                 renderSession.context.translate(bounds.x / scale.x, bounds.y / scale.y);
             };
             Renderer.prototype.drawImages = function (phaserSpine, renderSession) {
                 var ctx = renderSession.context;
                 var drawOrder = phaserSpine.skeleton.drawOrder;
-                var res = renderSession.resolution;
+                var res = 1;//renderSession.resolution;
                 if (PhaserSpine.SpinePlugin.DEBUG)
                     ctx.strokeStyle = "green";
                 ctx.save();
@@ -9302,6 +9302,7 @@ var PhaserSpine;
             _this.skeleton.updateWorldTransform();
             var size = new spine.Vector2();
             _this.skeleton.getBounds(new spine.Vector2(), size, []);
+            _this.setTexture(new PIXI.Texture(new PIXI.BaseTexture()));
             _this.texture.setFrame(new PIXI.Rectangle(0, 0, size.x, size.y));
             _this.skeleton.setToSetupPose();
             _this.skeleton.updateWorldTransform();
