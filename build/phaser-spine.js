@@ -9434,6 +9434,9 @@ var PhaserSpine;
                 return;
             }
             this.skeleton.setSkin(skin);
+            var size = new spine.Vector2();
+            this.skeleton.getBounds(new spine.Vector2(), size, []);
+            this.texture.setFrame(new PIXI.Rectangle(0, 0, size.x, size.y));
         };
         Spine.prototype.setSkin = function (skin) {
             this.skeleton.setSkin(skin);
